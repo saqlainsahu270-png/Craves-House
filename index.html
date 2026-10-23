@@ -1,0 +1,597 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#120608">
+<meta name="description" content="Order pizza, burgers, shawarma, fries and delicious fast food from Crave House Pakistan.">
+<title>Crave House 🍕 🍔</title>
+
+<style>
+:root{--red:#b5121b;--red-dark:#790b12;--blue:#8f1018;--blue-dark:#59070d;--navy:#0a090a;--dark:#f4eeee;--gold:#d9a441;--white:#f7f2f2;--bg:#100d0e;--muted:#b9abad;--border:#382326;--green:#168451;--shadow:0 10px 30px rgba(0,0,0,.38)}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:100px}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:#f4eeee}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
+a{color:inherit}
+img{max-width:100%}
+
+.topbar{padding:9px 14px;background:#070607;color:#f8eeee;text-align:center;font-size:12px;font-weight:800;letter-spacing:.7px;border-bottom:1px solid #4a1118}
+header{position:sticky;top:0;z-index:20;background:#111011;color:#f4eeee;box-shadow:0 5px 22px #0009;border-bottom:1px solid #42151b}
+.nav{max-width:1240px;margin:auto;padding:13px 22px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.logo{font-size:23px;font-weight:950;letter-spacing:-.8px;text-decoration:none;white-space:nowrap}
+.logo span:not(.logo-mark){color:#d21e2a}
+.logo-mark{display:inline-grid;place-items:center;width:38px;height:38px;margin-right:5px;border-radius:12px;background:linear-gradient(135deg,#c51a25,#65080e);color:#fff;font-size:22px;vertical-align:middle;box-shadow:0 4px 14px #b5121b50}
+.navlinks{display:flex;gap:24px;align-items:center}
+.navlinks a{text-decoration:none;font-size:13px;font-weight:800;transition:color .2s;color:#eee4e5}
+.navlinks a:hover{color:var(--red)}
+.btn{display:inline-flex;justify-content:center;align-items:center;gap:7px;border:0;border-radius:9px;padding:13px 18px;font-size:13px;font-weight:900;text-decoration:none;transition:transform .2s,background .2s,box-shadow .2s}
+.btn:hover,.add-btn:hover{transform:translateY(-2px)}
+.btn-red,.add-btn{background:linear-gradient(135deg,#c51a25,#7d0b12);color:#fff;box-shadow:0 5px 15px #b5121b35}
+.btn-red:hover,.add-btn:hover{background:#df202b}
+.btn-blue{background:#870e17;color:#fff}
+.btn-blue:hover{background:#b5121b}
+.btn-gold{background:#d9a441;color:#160d0e}
+.btn-outline{background:#191416;color:#f3e9ea;border:1px solid #4a292e}
+.btn-dark{background:#080708;color:#fff}
+.btn:disabled{opacity:.65;cursor:wait;transform:none}
+
+.hero{position:relative;min-height:510px;display:flex;align-items:center;overflow:hidden;color:#fff;background:linear-gradient(90deg,#070607 0%,#16080aef 42%,#2b090db8 72%,#24070a55 100%),url("images/hero-pizza.jpg") center/cover no-repeat}
+.hero::after{content:"";position:absolute;right:-90px;bottom:-180px;width:420px;height:420px;border:65px solid #ffffff0b;border-radius:50%;pointer-events:none}
+.hero-content{position:relative;z-index:1;width:1240px;max-width:100%;margin:auto;padding:70px 25px}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;padding:9px 13px;border:1px solid #703039;border-radius:30px;background:#1b1012;color:#f0c96e;font-size:11px;letter-spacing:1.5px;font-weight:900;text-transform:uppercase}
+.hero h1{max-width:680px;margin:22px 0 17px;font-size:clamp(40px,6vw,72px);line-height:1.02;letter-spacing:-2.7px}
+.hero h1 span{color:var(--gold)}
+.hero p{max-width:510px;line-height:1.8;color:#dfd2d4;font-size:15px}
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.hero-actions .btn{min-height:48px;padding-inline:22px}
+.trust{display:flex;flex-wrap:wrap;gap:17px;margin-top:28px;color:#f0e6e7;font-size:12px;font-weight:700}
+.trust span{display:flex;align-items:center;gap:6px}
+.hero-badge{display:inline-block;margin-top:20px;padding:8px 12px;border-left:3px solid var(--gold);background:#170e10;font-size:12px;color:#f0e6e7}
+
+section{scroll-margin-top:90px}
+.container{max-width:1240px;margin:auto;padding:58px 22px}
+.section-head{margin-bottom:26px}
+.section-head h2{margin:0 0 10px;color:#f5eded;font-size:clamp(28px,4vw,38px);letter-spacing:-1px}
+.section-head p{color:#b9abad;line-height:1.7;margin:0;font-size:14px}
+.promo{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:30px}
+.promo-card{position:relative;overflow:hidden;min-height:145px;padding:25px;border-radius:15px;color:#fff;background:linear-gradient(120deg,#4d080e,#b5121b);box-shadow:0 8px 24px #0007}
+.promo-card:nth-child(2){background:linear-gradient(120deg,#090809,#351015);box-shadow:0 8px 24px #0008}
+.promo-card::after{content:"🍕";position:absolute;right:20px;bottom:-30px;color:#ffffff19;font-size:130px;line-height:1}
+.promo-card h3{position:relative;z-index:1;font-size:24px;margin:0 0 9px}
+.promo-card p{position:relative;z-index:1;max-width:330px;line-height:1.7;margin:0;color:#ffffffed;font-size:13px}
+.controls{display:grid;grid-template-columns:1fr 210px;gap:12px;margin-bottom:17px}
+.field{width:100%;padding:13px 14px;border:1px solid #493035;border-radius:9px;background:#191516;color:#f5eeee;outline:none;transition:border-color .2s,box-shadow .2s}
+.field::placeholder{color:#a99699}
+.field:focus{border-color:#c51a25;box-shadow:0 0 0 3px #b5121b30}
+.categories{display:flex;flex-wrap:wrap;gap:9px;margin-bottom:26px}
+.cat{padding:10px 16px;border:1px solid #493035;border-radius:7px;background:#191516;color:#d8ccce;font-size:12px;font-weight:800;transition:.2s}
+.cat.active,.cat:hover{background:#8f1018;color:#fff;border-color:#b5121b}
+.menu-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px}
+.food-card{display:flex;flex-direction:column;min-width:0;overflow:hidden;border:1px solid #382326;border-radius:13px;background:#191516;box-shadow:0 5px 18px #0005;transition:transform .23s,box-shadow .23s,border-color .23s}
+.food-card:hover{transform:translateY(-5px);border-color:#8e222c;box-shadow:0 15px 30px #0008}
+.food-img{display:block;width:100%;height:185px;object-fit:cover;background:#211719;transition:transform .35s}
+.food-card:hover .food-img{transform:scale(1.035)}
+.food-info{display:flex;flex-direction:column;flex:1;padding:16px}
+.food-category{color:#e24a52;font-size:10px;letter-spacing:1px;font-weight:900;text-transform:uppercase}
+.food-info h3{font-size:16px;line-height:1.35;margin:8px 0;color:#f5eeee}
+.food-info p{color:#b9abad;font-size:12px;line-height:1.65;margin:0 0 10px}
+.size-heading{display:block;margin:8px 0;color:#b9abad;font-size:11px;font-weight:800}
+.size-options{display:flex;flex-wrap:wrap;gap:7px;margin:0 0 10px}
+.size-box{display:grid;place-items:center;min-width:39px;width:42px;height:39px;padding:0 3px;border:1.5px solid #4a3034;border-radius:6px;background:#100d0e;color:#eee2e3;font-size:12px;font-weight:900;transition:background .18s,border-color .18s,color .18s,transform .18s}
+.size-box:hover{border-color:#c51a25;background:#2a1114;transform:translateY(-1px)}
+.size-box.active{border-color:#d32a34;background:#9a111a;color:#fff;box-shadow:0 3px 12px #b5121b40}
+.selected-size-price{min-height:18px;margin:0 0 10px;color:#e24a52;font-size:12px;font-weight:900}
+.food-bottom{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:auto}
+.price{font-size:17px;font-weight:950;color:#f6eeee;white-space:nowrap}
+.add-btn{border:0;border-radius:7px;padding:10px 13px;font-size:12px;font-weight:900;transition:.2s;white-space:nowrap}
+.empty{grid-column:1/-1;padding:45px 20px;border:1px dashed #4a3034;border-radius:12px;background:#191516;text-align:center;color:#b9abad}
+
+.info-strip{background:#0b090a;border-block:1px solid #382326}
+.info-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.info-item{padding:22px;border:1px solid #382326;border-radius:12px;background:#171315}
+.info-item .emoji{display:grid;place-items:center;width:48px;height:48px;border-radius:12px;background:#301015;font-size:25px}
+.info-item h3{margin:15px 0 7px;color:#f4eeee;font-size:16px}
+.info-item p{color:#b9abad;line-height:1.7;font-size:13px;margin:0}
+
+.checkout-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:24px;align-items:start}
+.panel{padding:25px;border:1px solid #382326;border-radius:13px;background:#191516;box-shadow:var(--shadow)}
+.panel h3{margin:0 0 22px;font-size:21px;color:#f4eeee}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.form-group{margin-bottom:15px}
+.form-group label{display:block;margin-bottom:7px;color:#dfd2d4;font-size:12px;font-weight:900}
+.form-note,.small{color:#b9abad;font-size:11px;line-height:1.7}
+.location-status{margin:10px 0 15px;color:#b9abad;font-size:12px;line-height:1.6}
+.payment-note{padding:14px;margin:13px 0 18px;border:1px solid #735329;border-radius:9px;background:#21170e;color:#f0cf86;font-size:13px;font-weight:800}
+.cart-empty{padding:25px 10px;text-align:center;color:#b9abad;font-size:13px}
+.cart-row{display:grid;grid-template-columns:1fr auto;gap:10px;padding:15px 0;border-bottom:1px solid #382326}
+.cart-name{font-size:13px;font-weight:900;color:#f4eeee}
+.cart-controls{display:flex;align-items:center;gap:9px;margin-top:9px}
+.qty-btn{width:29px;height:29px;border:1px solid #4a3034;border-radius:7px;background:#211719;color:#f5eeee;font-weight:900}
+.qty-btn:hover{background:#3a1117}
+.remove-btn{border:0;background:none;color:#e24a52;font-size:11px;font-weight:800}
+.cart-price{font-size:13px;font-weight:900;color:#f4eeee}
+.total-line{display:flex;justify-content:space-between;gap:12px;margin:14px 0;color:#b9abad;font-size:13px}
+.total-line strong{color:#f4eeee}
+.total-line.final{padding-top:16px;border-top:1px solid #493035;color:#f4eeee;font-size:21px;font-weight:950}
+.full{width:100%}
+
+footer{background:#070607;color:#f5eeee;border-top:1px solid #42151b}
+.footer-grid{max-width:1240px;margin:auto;padding:48px 22px 30px;display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:35px}
+footer h3{margin-top:0;font-size:15px}
+footer p{color:#bbaeb0;font-size:12px;line-height:1.9}
+footer a:not(.footer-contact){text-decoration:none}
+footer a:not(.footer-contact):hover{color:var(--gold)}
+.footer-contact{color:#e2b24e;font-weight:900;text-decoration:none}
+.footer-bottom{padding:17px;border-top:1px solid #ffffff1c;text-align:center;color:#9d9093;font-size:11px}
+.cart-float{position:fixed;right:22px;bottom:22px;z-index:25;box-shadow:0 8px 25px #0009}
+.toast{position:fixed;left:50%;bottom:28px;z-index:80;max-width:calc(100% - 30px);padding:13px 18px;border-radius:9px;background:#7d0b12;color:#fff;font-size:13px;font-weight:700;opacity:0;pointer-events:none;transform:translate(-50%,18px);transition:.25s}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+.modal-backdrop{position:fixed;inset:0;z-index:60;display:none;align-items:center;justify-content:center;padding:18px;background:#050304e8}
+.modal-backdrop.show{display:flex}
+.modal{width:min(560px,100%);max-height:90vh;overflow:auto;padding:26px;border-radius:15px;background:#171315;color:#f4eeee;border:1px solid #49272c;box-shadow:0 20px 60px #000a}
+.modal h2{margin-top:0;color:#f4eeee}
+.modal>p{color:#b9abad;font-size:13px;line-height:1.7}
+.receipt-line{display:flex;justify-content:space-between;gap:15px;margin:12px 0;font-size:13px;color:#e8dcde}
+.receipt-line strong{text-align:right;overflow-wrap:anywhere}
+.receipt-items{padding:10px 0;border-block:1px solid #493035}
+.receipt-id{padding:13px;border-radius:8px;background:#2a1115;color:#f2c9cc;font-weight:900;font-size:13px}
+
+@media(max-width:1000px){.menu-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.navlinks{gap:15px}}
+@media(max-width:720px){
+.nav{flex-wrap:wrap;padding:12px 15px;gap:12px}
+.logo{font-size:20px}.logo-mark{width:33px;height:33px;font-size:19px}
+.navlinks{order:3;width:100%;justify-content:center;flex-wrap:wrap;gap:20px;padding:8px 0 3px}
+.navlinks a{font-size:12px}.nav>.btn{padding:10px 12px}
+.hero{min-height:455px;background-position:58% center}
+.hero-content{padding:55px 20px}.hero h1{letter-spacing:-1.7px}
+.container{padding:42px 15px}
+.menu-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.food-img{height:135px}.food-info{padding:12px}
+.food-info h3{font-size:14px}.food-info p{font-size:11px}
+.price{font-size:14px}.add-btn{padding:9px;font-size:11px}
+.size-options{gap:5px}.size-box{width:36px;min-width:36px;height:36px;font-size:11px}
+.promo,.checkout-grid,.info-grid,.footer-grid,.form-row,.controls{grid-template-columns:1fr}
+.promo-card{min-height:125px}.panel{padding:18px}
+.cart-float{right:12px;bottom:12px}
+}
+@media(max-width:380px){
+.topbar{font-size:10px}.menu-grid{grid-template-columns:1fr}
+.food-img{height:205px}.hero h1{font-size:39px}
+.hero-actions .btn{width:100%}.trust{gap:10px}
+}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition-duration:.01ms!important}}
+</style>
+</head>
+
+<body>
+<div class="topbar">🇵🇰 PROUDLY SERVING PAKISTAN &nbsp;·&nbsp; CASH ON DELIVERY ONLY</div>
+
+<header>
+<div class="nav">
+<a href="#home" class="logo"><span class="logo-mark">🍕</span>Crave <span>House</span></a>
+<nav class="navlinks" aria-label="Main navigation">
+<a href="#home">Home</a><a href="#menu">Our Menu</a><a href="#delivery">Delivery</a><a href="#contact">Contact</a>
+</nav>
+<button class="btn btn-red" onclick="goToCart()">🛒 Cart (<span id="cartCount">0</span>)</button>
+</div>
+</header>
+
+<main>
+<section class="hero" id="home">
+<div class="hero-content">
+<div class="eyebrow">★ Freshly prepared · Big flavour</div>
+<h1>Your cravings.<br><span>Made delicious.</span></h1>
+<p>Discover cheesy pizzas, juicy burgers, loaded fries, shawarma and Pakistani favourites. Your next favourite meal is just a few clicks away.</p>
+<div class="hero-actions">
+<a class="btn btn-gold" href="#menu">Explore Our Menu →</a>
+<a class="btn" style="background:#ffffff17;color:white;border:1px solid #ffffff70" href="#delivery">Order for Delivery</a>
+</div>
+<div class="trust"><span>🍕 Made fresh</span><span>🛵 Home delivery</span><span>💵 Pay on delivery</span></div>
+<div class="hero-badge">Good food. Great cravings. Delivered to your door.</div>
+</div>
+</section>
+
+<section class="container" id="menu">
+<div class="section-head"><h2>Find Your Favourite</h2><p>Tap S, M, L or XL to see the price, then add your favourite to your basket.</p></div>
+<div class="promo">
+<div class="promo-card"><h3>🍕 Pizza, Your Way</h3><p>From classic cheese to spicy chicken favourites. Choose a size for your appetite.</p></div>
+<div class="promo-card"><h3>🍔 Cravings, Sorted</h3><p>Burgers, shawarma, crispy broast and loaded sides for every kind of craving.</p></div>
+</div>
+<div class="controls">
+<input class="field" id="searchInput" type="search" placeholder="Search pizza, shawarma, fries..." aria-label="Search menu">
+<select class="field" id="sortSelect" aria-label="Sort menu">
+<option value="default">Sort: Recommended</option><option value="low">Price: Low to High</option><option value="high">Price: High to Low</option><option value="az">Name: A to Z</option>
+</select>
+</div>
+<div class="categories" id="categories"></div>
+<div class="menu-grid" id="menuGrid"></div>
+</section>
+
+<div class="info-strip"><div class="container info-grid">
+<div class="info-item"><div class="emoji">🥬</div><h3>Freshly Prepared</h3><p>Food prepared with care to make your meal a satisfying experience.</p></div>
+<div class="info-item"><div class="emoji">🛵</div><h3>Easy Delivery</h3><p>Provide your contact number and full address so your order can reach you.</p></div>
+<div class="info-item"><div class="emoji">💵</div><h3>Cash on Delivery</h3><p>Pay when your food arrives. No online payment method is offered.</p></div>
+</div></div>
+
+<section class="container" id="delivery">
+<div class="section-head"><h2>Ready to Order?</h2><p>Check your basket and enter your delivery details to prepare your order.</p></div>
+<div class="checkout-grid">
+<div class="panel">
+<h3>📍 Delivery Information</h3>
+<form id="orderForm">
+<div class="form-group"><label for="customerName">Full name *</label><input class="field" id="customerName" name="customerName" required maxlength="80" autocomplete="name" placeholder="Enter your name"></div>
+<div class="form-row">
+<div class="form-group"><label for="customerPhone">Mobile number *</label><input class="field" id="customerPhone" name="customerPhone" type="tel" required maxlength="20" autocomplete="tel" placeholder="03XXXXXXXXX"></div>
+<div class="form-group"><label for="customerCity">City *</label><input class="field" id="customerCity" name="customerCity" required maxlength="70" autocomplete="address-level2" placeholder="Your city in Pakistan"></div>
+</div>
+<div class="form-group"><label for="customerAddress">Complete delivery address *</label><textarea class="field" id="customerAddress" name="customerAddress" required maxlength="400" autocomplete="street-address" rows="3" placeholder="House, street, area and nearby landmark"></textarea></div>
+<button type="button" class="btn btn-blue" onclick="getLocation()">📍 Use My Current Location</button>
+<div id="locationStatus" class="location-status">Location is optional. You can enter your address manually.</div>
+<div class="form-group"><label for="orderNotes">Additional instructions (optional)</label><textarea class="field" id="orderNotes" name="orderNotes" maxlength="300" rows="2" placeholder="Any special instructions?"></textarea></div>
+<div class="payment-note">💵 Payment method: Cash on Delivery only</div>
+<p class="form-note">Your receipt is prepared in this browser. To submit your order to the restaurant, press the email button on the receipt. You can print or save your receipt as a PDF.</p>
+<button type="submit" class="btn btn-red full">Prepare Order & Receipt →</button>
+</form>
+</div>
+
+<div class="panel" id="cartPanel">
+<h3>🛒 Your Basket</h3>
+<div id="cartItems"><div class="cart-empty">Your basket is empty. Add something delicious!</div></div>
+<div class="total-line"><span>Subtotal</span><strong id="subtotal">Rs. 0</strong></div>
+<div class="total-line"><span>Delivery</span><strong id="deliveryFee">Rs. 0</strong></div>
+<div class="total-line final"><span>Total</span><span id="grandTotal">Rs. 0</span></div>
+<p class="small">Sample delivery fee: Rs. 200. Delivery is free on orders of Rs. 5,000 or more. Adjust these settings in the JavaScript to match your business.</p>
+<button class="btn btn-outline full" onclick="clearCart()">Clear Basket</button>
+</div>
+</div>
+</section>
+</main>
+
+<footer id="contact">
+<div class="footer-grid">
+<div><div class="logo"><span class="logo-mark">🍕</span>Crave <span>House</span></div><p>Your food cravings, delivered. Discover pizza, burgers, shawarma, fries and more at Crave House Pakistan.</p></div>
+<div><h3>Quick Links</h3><p><a href="#home">Home</a></p><p><a href="#menu">Explore Menu</a></p><p><a href="#delivery">Order Online</a></p></div>
+<div><h3>Customer Inquiries</h3><p>Contact us for general questions and business inquiries.</p><p><a class="footer-contact" href="tel:03236415307">03236415307</a></p><p class="small">Contact this number for general inquiries. The restaurant order email is kept out of the customer-facing website.</p></div>
+</div>
+<div class="footer-bottom">© <span id="year"></span> Crave House Pakistan. All rights reserved.</div>
+</footer>
+
+<button class="btn btn-red cart-float" onclick="goToCart()">🛒 View Basket (<span id="floatCartCount">0</span>)</button>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<div class="modal-backdrop" id="receiptModal" role="dialog" aria-modal="true" aria-labelledby="receiptTitle">
+<div class="modal">
+<h2 id="receiptTitle">🎉 Your Order Receipt</h2>
+<p>Check the details below. You can print or save the receipt. To send your order to the restaurant, press the email button.</p>
+<div class="receipt-id" id="receiptId"></div>
+<div id="receiptDetails"></div>
+<div class="payment-note">Payment: Cash on Delivery</div>
+<button class="btn btn-red full" id="sendEmailBtn">Send Order to Restaurant by Email ↗</button>
+<button class="btn btn-outline full" style="margin-top:10px" onclick="printReceipt()">Print / Save as PDF</button>
+<button class="btn btn-outline full" style="margin-top:10px" onclick="closeReceipt()">Close Receipt</button>
+</div>
+</div>
+
+<!-- EmailJS library: required for sending orders from the browser -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+<script>
+// ========================================================
+// EMAIL CONFIGURATION
+// Replace the three placeholders with your EmailJS details.
+// In your EmailJS template, set "To Email" to sawqwe@gmail.com.
+// ========================================================
+const EMAILJS_PUBLIC_KEY = "YOUR_EMAILJS_PUBLIC_KEY";
+const EMAILJS_SERVICE_ID = "YOUR_EMAILJS_SERVICE_ID";
+const EMAILJS_TEMPLATE_ID = "YOUR_EMAILJS_TEMPLATE_ID";
+
+const RESTAURANT_EMAIL = "saqlainsahu279@gmail.com";
+const DELIVERY_FEE = 200;
+const FREE_DELIVERY_OVER = 5000;
+
+const products = [
+{id:1,name:"Margherita Pizza",category:"Pizza",desc:"Classic cheese, tomato sauce and herbs.",img:"1.jpg",sizes:{S:650,M:950,L:1350,XL:1850}},
+{id:2,name:"Chicken Tikka Pizza",category:"Pizza",desc:"Chicken tikka, cheese and spicy sauce.",img:"2.jpg",sizes:{S:850,M:1250,L:1750,XL:2350}},
+{id:3,name:"Chicken Fajita Pizza",category:"Pizza",desc:"Chicken, peppers, onion and melted cheese.",img:"3.jpg",sizes:{S:900,M:1300,L:1800,XL:2400}},
+{id:4,name:"BBQ Chicken Pizza",category:"Pizza",desc:"BBQ chicken, onion and cheese.",img:"4.jpg",sizes:{S:950,M:1350,L:1850,XL:2450}},
+{id:5,name:"Malai Boti Pizza",category:"Pizza",desc:"Creamy malai boti, cheese and herbs.",img:"5.jpg",sizes:{S:950,M:1350,L:1850,XL:2450}},
+{id:6,name:"Peri Peri Pizza",category:"Pizza",desc:"Spicy peri peri chicken and cheese.",img:"6.jpg",sizes:{S:900,M:1300,L:1800,XL:2400}},
+{id:7,name:"Cheese Lover Pizza",category:"Pizza",desc:"A delicious combination of melted cheeses.",img:"7.jpg",sizes:{S:1000,M:1450,L:1950,XL:2600}},
+{id:8,name:"Supreme Pizza",category:"Pizza",desc:"A loaded pizza with assorted toppings.",img:"8.jpg",sizes:{S:1100,M:1550,L:2100,XL:2800}},
+{id:9,name:"Zinger Burger",category:"Burgers",desc:"Crispy chicken fillet with fresh lettuce.",img:"9.jpg",price:450},
+{id:10,name:"Classic Beef Burger",category:"Burgers",desc:"Beef patty, vegetables and sauce.",img:"10.jpg",price:550},
+{id:11,name:"Chicken Cheese Burger",category:"Burgers",desc:"Chicken patty with extra cheese.",img:"11.jpg",price:500},
+{id:12,name:"Double Beef Burger",category:"Burgers",desc:"Two beef patties and signature sauce.",img:"12.jpg",price:750},
+{id:13,name:"Crispy Chicken Burger",category:"Burgers",desc:"Crunchy chicken with creamy dressing.",img:"13.jpg",price:420},
+{id:14,name:"Chicken Broast (2 Pieces)",category:"Broast",desc:"Crispy seasoned chicken pieces.",img:"14.jpg",price:550},
+{id:15,name:"Broast Meal (4 Pieces)",category:"Broast",desc:"Crispy chicken served with sides.",img:"15.jpg",price:1050},
+{id:16,name:"Regular Fries",category:"Fries",desc:"Golden fries with seasoning.",img:"16.jpg",sizes:{S:220,L:350,XL:550}},
+{id:17,name:"Masala Fries",category:"Fries",desc:"Fries tossed with spicy masala.",img:"17.jpg",sizes:{S:260,L:390,XL:600}},
+{id:18,name:"Peri Peri Fries",category:"Fries",desc:"Fries with spicy peri peri seasoning.",img:"18.jpg",sizes:{S:280,L:420,XL:650}},
+{id:19,name:"Loaded Cheese Fries",category:"Fries",desc:"Crispy fries topped with melted cheese.",img:"19.jpg",sizes:{S:380,L:600,XL:850}},
+{id:20,name:"Pizza Fries",category:"Fries",desc:"Fries loaded with pizza toppings and cheese.",img:"20.jpg",sizes:{S:400,L:650,XL:950}},
+{id:21,name:"Chicken Shawarma",category:"Shawarma",desc:"Chicken wrap with garlic sauce.",img:"21.jpg",price:300},
+{id:22,name:"Zinger Shawarma",category:"Shawarma",desc:"Crispy chicken and signature sauce.",img:"22.jpg",sizes:{S:350,L:500}},
+{id:23,name:"Cheese Shawarma",category:"Shawarma",desc:"Chicken shawarma with melted cheese.",img:"23.jpg",sizes:{S:400,L:550}},
+{id:24,name:"Chicken Paratha Roll",category:"Rolls",desc:"Spiced chicken wrapped in soft paratha.",img:"24.jpg",price:350},
+{id:25,name:"Seekh Kebab Roll",category:"Rolls",desc:"Seekh kebab with chutney and salad.",img:"25.jpg",price:400},
+{id:26,name:"Chicken Biryani",category:"Pakistani Food",desc:"Fragrant rice with spiced chicken.",img:"26.jpg",price:350},
+{id:27,name:"Chicken Pulao",category:"Pakistani Food",desc:"Aromatic rice with tender chicken.",img:"27.jpg",price:380},
+{id:28,name:"Chicken Karahi",category:"Pakistani Food",desc:"Chicken cooked with tomatoes and spices.",img:"28.jpg",price:1200},
+{id:29,name:"Chicken Tikka",category:"BBQ",desc:"Smoky grilled chicken with spices.",img:"29.jpg",price:500},
+{id:30,name:"Chicken Seekh Kebab",category:"BBQ",desc:"Seasoned grilled kebabs.",img:"30.jpg",price:450},
+{id:31,name:"Chicken Wings",category:"Sides",desc:"Flavourful chicken wings.",img:"31.jpg",sizes:{"6P":500,"10P":800,"15P":1150}},
+{id:32,name:"Chicken Nuggets",category:"Sides",desc:"Crispy bite-sized chicken pieces.",img:"32.jpg",sizes:{"6P":300,"10P":450,"15P":650}},
+{id:33,name:"Club Sandwich",category:"Sandwiches",desc:"Chicken, egg and fresh vegetables.",img:"33.jpg",price:450},
+{id:34,name:"Grilled Chicken Sandwich",category:"Sandwiches",desc:"Grilled chicken with creamy dressing.",img:"34.jpg",price:420},
+{id:35,name:"Alfredo Pasta",category:"Pasta",desc:"Creamy white sauce pasta.",img:"35.jpg",price:700},
+{id:36,name:"Spicy Chicken Pasta",category:"Pasta",desc:"Spicy pasta with chicken and vegetables.",img:"36.jpg",price:680},
+{id:37,name:"Chocolate Brownie",category:"Desserts",desc:"Rich chocolate dessert.",img:"37.jpg",price:280},
+{id:38,name:"Chocolate Cake Slice",category:"Desserts",desc:"Soft chocolate cake.",img:"38.jpg",price:320},
+{id:39,name:"Chocolate Milkshake",category:"Drinks",desc:"Creamy chocolate milkshake.",img:"39.jpg",price:300},
+{id:40,name:"Soft Drink",category:"Drinks",desc:"Chilled soft drink, brand subject to availability.",img:"40.jpg",price:120}
+];
+
+let cart = {};
+let selectedSizes = {};
+let selectedCategory = "All";
+let customerCoordinates = null;
+let currentOrder = null;
+
+const menuGrid = document.getElementById("menuGrid");
+const cartItems = document.getElementById("cartItems");
+const searchInput = document.getElementById("searchInput");
+const sortSelect = document.getElementById("sortSelect");
+const categories = ["All", ...new Set(products.map(p => p.category))];
+
+function money(value){return "Rs. "+Number(value).toLocaleString("en-PK")}
+function safeText(value){return String(value).replace(/[&<>"']/g,ch=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[ch]))}
+function showToast(message){
+  const toast=document.getElementById("toast");
+  toast.textContent=message;
+  toast.classList.add("show");
+  clearTimeout(showToast.timer);
+  showToast.timer=setTimeout(()=>toast.classList.remove("show"),3000);
+}
+function getSizes(product){return product.sizes?Object.entries(product.sizes):[["1",product.price]]}
+
+function renderCategories(){
+  document.getElementById("categories").innerHTML=categories.map(category=>
+    `<button type="button" class="cat ${category===selectedCategory?"active":""}" aria-pressed="${category===selectedCategory}" onclick="chooseCategory('${safeText(category)}')">${safeText(category)}</button>`
+  ).join("");
+}
+function chooseCategory(category){selectedCategory=category;renderCategories();renderMenu()}
+function minPrice(product){return Math.min(...getSizes(product).map(item=>item[1]))}
+
+function renderMenu(){
+  let filtered=products.filter(product=>{
+    const categoryMatch=selectedCategory==="All"||product.category===selectedCategory;
+    const q=searchInput.value.trim().toLowerCase();
+    const searchMatch=(product.name+" "+product.category+" "+product.desc).toLowerCase().includes(q);
+    return categoryMatch&&searchMatch;
+  });
+  if(sortSelect.value==="low")filtered.sort((a,b)=>minPrice(a)-minPrice(b));
+  if(sortSelect.value==="high")filtered.sort((a,b)=>minPrice(b)-minPrice(a));
+  if(sortSelect.value==="az")filtered.sort((a,b)=>a.name.localeCompare(b.name));
+  if(!filtered.length){menuGrid.innerHTML='<div class="empty">No items found. Try another search.</div>';return}
+
+  menuGrid.innerHTML=filtered.map(product=>{
+    const sizes=getSizes(product);
+    if(!selectedSizes[product.id]||!sizes.some(([s])=>s===selectedSizes[product.id]))selectedSizes[product.id]=sizes[0][0];
+    const selectedSize=selectedSizes[product.id];
+    const selectedPrice=product.sizes?product.sizes[selectedSize]:product.price;
+    return `<article class="food-card">
+      <img class="food-img" src="${safeText(product.img)}" alt="${safeText(product.name)}" loading="lazy" onerror="this.onerror=null;this.src='images/food-placeholder.jpg';">
+      <div class="food-info">
+        <div class="food-category">${safeText(product.category)}</div>
+        <h3>${safeText(product.name)}</h3><p>${safeText(product.desc)}</p>
+        <span class="size-heading">${product.sizes?"SELECT SIZE":"PORTION"}</span>
+        <div class="size-options" role="group" aria-label="Choose size for ${safeText(product.name)}">
+          ${sizes.map(([size,price])=>`<button type="button" class="size-box ${size===selectedSize?"active":""}" aria-label="${safeText(size)}: ${money(price)}" aria-pressed="${size===selectedSize}" title="${safeText(size)} — ${money(price)}" onclick="selectProductSize(${product.id},'${safeText(size)}')">${safeText(size)}</button>`).join("")}
+        </div>
+        <div class="selected-size-price" id="selected-price-${product.id}">${safeText(selectedSize==="1"?"Single portion":selectedSize)} · ${money(selectedPrice)}</div>
+        <div class="food-bottom"><span class="price" id="price-${product.id}">${money(selectedPrice)}</span><button type="button" class="add-btn" onclick="addToCart(${product.id})">+ Add</button></div>
+      </div></article>`;
+  }).join("");
+}
+
+function selectProductSize(id,size){
+  const product=products.find(p=>p.id===id);
+  if(!product)return;
+  if(!getSizes(product).some(item=>item[0]===size))return;
+  selectedSizes[id]=size;
+  const price=product.sizes?product.sizes[size]:product.price;
+  const priceElement=document.getElementById("price-"+id);
+  const labelElement=document.getElementById("selected-price-"+id);
+  if(priceElement)priceElement.textContent=money(price);
+  if(labelElement)labelElement.textContent=(size==="1"?"Single portion":size)+" · "+money(price);
+  const card=priceElement?.closest(".food-card");
+  if(card)card.querySelectorAll(".size-box").forEach(button=>{
+    const active=button.getAttribute("aria-label").startsWith(size+":");
+    button.classList.toggle("active",active);
+    button.setAttribute("aria-pressed",String(active));
+  });
+}
+
+function addToCart(id){
+  const product=products.find(p=>p.id===id);
+  if(!product)return;
+  const size=selectedSizes[id]||getSizes(product)[0][0];
+  const price=product.sizes?product.sizes[size]:product.price;
+  const key=id+"::"+size;
+  if(!cart[key])cart[key]={id,name:product.name,category:product.category,size:size==="1"?"Single":size,price,qty:0};
+  cart[key].qty++;
+  renderCart();
+  showToast(product.name+" ("+(size==="1"?"Single":size)+") added to your basket.");
+}
+function changeQty(key,amount){if(!cart[key])return;cart[key].qty+=amount;if(cart[key].qty<=0)delete cart[key];renderCart()}
+function clearCart(){cart={};renderCart();showToast("Your basket has been cleared.")}
+function getSubtotal(){return Object.values(cart).reduce((sum,item)=>sum+item.price*item.qty,0)}
+function getDeliveryFee(){const subtotal=getSubtotal();return subtotal?(subtotal>=FREE_DELIVERY_OVER?0:DELIVERY_FEE):0}
+
+function renderCart(){
+  const items=Object.entries(cart);
+  const count=items.reduce((sum,[key,item])=>sum+item.qty,0);
+  document.getElementById("cartCount").textContent=count;
+  document.getElementById("floatCartCount").textContent=count;
+  if(!items.length)cartItems.innerHTML='<div class="cart-empty">Your basket is empty. Add something delicious!</div>';
+  else cartItems.innerHTML=items.map(([key,item])=>
+    `<div class="cart-row"><div><div class="cart-name">${safeText(item.name)}</div><div class="small">${safeText(item.size)} · ${money(item.price)} each</div><div class="cart-controls"><button type="button" class="qty-btn" aria-label="Decrease quantity" onclick="changeQty('${safeText(key)}',-1)">−</button><span>${item.qty}</span><button type="button" class="qty-btn" aria-label="Increase quantity" onclick="changeQty('${safeText(key)}',1)">+</button><button type="button" class="remove-btn" onclick="changeQty('${safeText(key)}',-${item.qty})">Remove</button></div></div><div class="cart-price">${money(item.price*item.qty)}</div></div>`
+  ).join("");
+  document.getElementById("subtotal").textContent=money(getSubtotal());
+  document.getElementById("deliveryFee").textContent=money(getDeliveryFee());
+  document.getElementById("grandTotal").textContent=money(getSubtotal()+getDeliveryFee());
+}
+function goToCart(){document.getElementById("delivery").scrollIntoView({behavior:"smooth"})}
+
+function getLocation(){
+  const status=document.getElementById("locationStatus");
+  if(!navigator.geolocation){status.textContent="Location is unsupported in this browser. Enter your address manually.";return}
+  status.textContent="Waiting for location permission…";
+  navigator.geolocation.getCurrentPosition(position=>{
+    customerCoordinates={latitude:position.coords.latitude,longitude:position.coords.longitude};
+    status.textContent="Location captured. Please also enter your complete delivery address.";
+    showToast("Location captured.");
+  },()=>{
+    status.textContent="Location unavailable. You can still order by entering your address.";
+  },{enableHighAccuracy:true,timeout:12000,maximumAge:60000});
+}
+
+document.getElementById("orderForm").addEventListener("submit",function(event){
+  event.preventDefault();
+  if(!Object.keys(cart).length){showToast("Please add at least one item first.");goToCart();return}
+
+  const data=new FormData(this);
+  const order={
+    id:"CH"+Date.now().toString().slice(-8),
+    name:String(data.get("customerName")||"").trim(),
+    phone:String(data.get("customerPhone")||"").trim(),
+    city:String(data.get("customerCity")||"").trim(),
+    address:String(data.get("customerAddress")||"").trim(),
+    notes:String(data.get("orderNotes")||"").trim(),
+    items:Object.values(cart).map(item=>({...item})),
+    subtotal:getSubtotal(),
+    delivery:getDeliveryFee(),
+    total:getSubtotal()+getDeliveryFee(),
+    coords:customerCoordinates
+  };
+
+  if(!order.name||!order.phone||!order.city||!order.address){showToast("Please complete all required details.");return}
+  const digits=order.phone.replace(/\D/g,"");
+  if(digits.length<10||digits.length>15){showToast("Please enter a valid phone number.");return}
+
+  currentOrder=order;
+  document.getElementById("receiptId").textContent="Receipt / Order ID: "+order.id;
+
+  document.getElementById("receiptDetails").innerHTML=`
+    <div class="receipt-line"><span>Customer</span><strong>${safeText(order.name)}</strong></div>
+    <div class="receipt-line"><span>Phone</span><strong>${safeText(order.phone)}</strong></div>
+    <div class="receipt-line"><span>City</span><strong>${safeText(order.city)}</strong></div>
+    <div class="receipt-line"><span>Address</span><strong>${safeText(order.address)}</strong></div>
+    ${order.notes?`<div class="receipt-line"><span>Instructions</span><strong>${safeText(order.notes)}</strong></div>`:""}
+    <div class="receipt-items">${order.items.map(item=>`<div class="receipt-line"><span>${safeText(item.name)} (${safeText(item.size)}) × ${item.qty}</span><strong>${money(item.price*item.qty)}</strong></div>`).join("")}</div>
+    <div class="receipt-line"><span>Subtotal</span><strong>${money(order.subtotal)}</strong></div>
+    <div class="receipt-line"><span>Delivery</span><strong>${money(order.delivery)}</strong></div>
+    <div class="receipt-line" style="font-size:18px"><strong>Total</strong><strong>${money(order.total)}</strong></div>`;
+
+  const sendButton=document.getElementById("sendEmailBtn");
+  sendButton.disabled=false;
+  sendButton.textContent="Send Order to Restaurant by Email ↗";
+  document.getElementById("receiptModal").classList.add("show");
+});
+
+// Send the order through EmailJS to the restaurant's configured email template.
+document.getElementById("sendEmailBtn").addEventListener("click",async function(){
+  const button=this;
+  const configured=
+    EMAILJS_PUBLIC_KEY!=="YOUR_EMAILJS_PUBLIC_KEY" &&
+    EMAILJS_SERVICE_ID!=="YOUR_EMAILJS_SERVICE_ID" &&
+    EMAILJS_TEMPLATE_ID!=="YOUR_EMAILJS_TEMPLATE_ID";
+
+  if(!currentOrder){showToast("Please prepare an order first.");return}
+  if(!configured){showToast("Email setup is incomplete. Add your EmailJS keys in the code.");return}
+  if(!window.emailjs){showToast("Email service did not load. Check your internet connection.");return}
+
+  button.disabled=true;
+  button.textContent="Sending Order...";
+
+  const order=currentOrder;
+  const templateParams={
+    order_id:order.id,
+    customer_name:order.name,
+    customer_phone:order.phone,
+    customer_city:order.city,
+    customer_address:order.address,
+    order_notes:order.notes||"None",
+    order_items:order.items.map(item=>
+      `${item.name} (${item.size}) x${item.qty} — ${money(item.price*item.qty)}`
+    ).join("\n"),
+    subtotal:money(order.subtotal),
+    delivery_fee:money(order.delivery),
+    total:money(order.total),
+    payment_method:"Cash on Delivery",
+    customer_location:order.coords
+      ?`https://maps.google.com/?q=${order.coords.latitude},${order.coords.longitude}`
+      :"Not provided"
+  };
+
+  try{
+    emailjs.init({publicKey:EMAILJS_PUBLIC_KEY});
+    await emailjs.send(EMAILJS_SERVICE_ID,EMAILJS_TEMPLATE_ID,templateParams);
+    showToast("Order emailed to the restaurant successfully!");
+    button.textContent="Order Sent Successfully ✓";
+    // Prevent accidental duplicate submission of the same receipt.
+    button.disabled=true;
+  }catch(error){
+    console.error("EmailJS error:",error);
+    showToast("Email failed. Check your EmailJS setup and try again.");
+    button.disabled=false;
+    button.textContent="Retry Sending Order ↗";
+  }
+});
+
+function closeReceipt(){document.getElementById("receiptModal").classList.remove("show")}
+
+function printReceipt(){
+  if(!currentOrder){showToast("Prepare an order receipt first.");return}
+  const content=document.getElementById("receiptDetails").innerHTML;
+  const id=document.getElementById("receiptId").textContent;
+  const win=window.open("","_blank");
+  if(!win){showToast("Allow pop-ups to print or save your receipt.");return}
+
+  win.document.write(`<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>Crave House Receipt</title><meta name="viewport" content="width=device-width, initial-scale=1"><style>
+  body{font:14px Arial,sans-serif;max-width:650px;margin:25px auto;padding:22px;color:#222}
+  h1{color:#b5121b;font-size:27px}h2{color:#59070d}
+  .receipt-line{display:flex;justify-content:space-between;gap:15px;margin:13px 0}
+  .receipt-line strong{text-align:right;overflow-wrap:anywhere}
+  .receipt-items{border-block:1px solid #dce6ec;padding:10px 0}
+  .id{padding:12px;background:#f7eeee;border-radius:7px;font-weight:bold}
+  .note{margin-top:25px;color:#647786;font-size:12px}
+  @media print{body{margin:0 auto;padding:10px}}
+  </style></head><body>
+  <h1>🍕 Crave House Pakistan</h1><h2>Order Receipt</h2>
+  <p class="id">${safeText(id)}</p>${content}
+  <h3>Payment: Cash on Delivery</h3>
+  <p class="note">Thank you for choosing Crave House Pakistan. This receipt is generated in your browser. To submit the order, use the email button on the original receipt screen.</p>
+  <script>window.onload=()=>window.print();<\/script></body></html>`);
+  win.document.close();
+}
+
+document.getElementById("receiptModal").addEventListener("click",event=>{
+  if(event.target.id==="receiptModal")closeReceipt();
+});
+document.addEventListener("keydown",event=>{
+  if(event.key==="Escape")closeReceipt();
+});
+searchInput.addEventListener("input",renderMenu);
+sortSelect.addEventListener("change",renderMenu);
+document.getElementById("year").textContent=new Date().getFullYear();
+renderCategories();
+renderMenu();
+renderCart();
+</script>
+</body>
+</html>
