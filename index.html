@@ -50,6 +50,11 @@ header{position:sticky;top:0;z-index:20;background:#111011;color:#f4eeee;box-sha
 .trust{display:flex;flex-wrap:wrap;gap:17px;margin-top:28px;color:#f0e6e7;font-size:12px;font-weight:700}
 .trust span{display:flex;align-items:center;gap:6px}
 .hero-badge{display:inline-block;margin-top:20px;padding:8px 12px;border-left:3px solid var(--gold);background:#170e10;font-size:12px;color:#f0e6e7}
+.hero-food-preview{display:none}
+.hero-food-tile{min-width:0;display:flex;align-items:center;gap:9px;padding:7px;border:1px solid #ffffff2a;border-radius:10px;background:#160d0f;color:#fff;text-decoration:none;overflow:hidden}
+.hero-food-tile img{width:54px;height:48px;flex:0 0 54px;object-fit:cover;border-radius:7px;background:#2a1719}
+.hero-food-tile span{font-size:12px;font-weight:900;line-height:1.25}
+
 
 section{scroll-margin-top:90px}
 .container{max-width:1240px;margin:auto;padding:58px 22px}
@@ -139,28 +144,67 @@ footer a:not(.footer-contact):hover{color:var(--gold)}
 .receipt-items{padding:10px 0;border-block:1px solid #493035}
 .receipt-id{padding:13px;border-radius:8px;background:#2a1115;color:#f2c9cc;font-weight:900;font-size:13px}
 
-@media(max-width:1000px){.menu-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.navlinks{gap:15px}}
+@media(max-width:1000px){
+.menu-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.navlinks{gap:15px}
+}
 @media(max-width:720px){
-.nav{flex-wrap:wrap;padding:12px 15px;gap:12px}
-.logo{font-size:20px}.logo-mark{width:33px;height:33px;font-size:19px}
-.navlinks{order:3;width:100%;justify-content:center;flex-wrap:wrap;gap:20px;padding:8px 0 3px}
-.navlinks a{font-size:12px}.nav>.btn{padding:10px 12px}
-.hero{min-height:455px;background-position:58% center}
-.hero-content{padding:55px 20px}.hero h1{letter-spacing:-1.7px}
-.container{padding:42px 15px}
-.menu-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
-.food-img{height:135px}.food-info{padding:12px}
-.food-info h3{font-size:14px}.food-info p{font-size:11px}
-.price{font-size:14px}.add-btn{padding:9px;font-size:11px}
-.size-options{gap:5px}.size-box{width:36px;min-width:36px;height:36px;font-size:11px}
-.promo,.checkout-grid,.info-grid,.footer-grid,.form-row,.controls{grid-template-columns:1fr}
-.promo-card{min-height:125px}.panel{padding:18px}
-.cart-float{right:12px;bottom:12px}
+html{scroll-padding-top:120px}
+.topbar{padding:8px 10px;font-size:10px;letter-spacing:.35px}
+.nav{flex-wrap:wrap;padding:9px 12px;gap:9px}
+.logo{font-size:19px}.logo-mark{width:31px;height:31px;font-size:18px;border-radius:9px}
+.navlinks{order:3;width:100%;justify-content:space-around;flex-wrap:nowrap;gap:8px;padding:5px 0 2px}
+.navlinks a{font-size:11px}.nav>.btn{padding:9px 10px;font-size:11px}
+.hero{min-height:0;background-position:58% center}
+.hero-content{padding:25px 15px 22px}
+.eyebrow{padding:7px 10px;font-size:9px;letter-spacing:1px}
+.hero h1{font-size:clamp(29px,7.5vw,43px);line-height:1.04;letter-spacing:-1.3px;margin:13px 0 9px}
+.hero p{font-size:12px;line-height:1.5;margin:0;max-width:470px}
+.hero-actions{gap:8px;margin-top:13px}
+.hero-actions .btn{min-height:39px;padding:9px 12px;font-size:11px;flex:1}
+.hero-food-preview{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px;margin-top:13px;max-width:520px}
+.hero-food-tile{padding:5px;gap:7px}.hero-food-tile img{width:48px;height:43px;flex-basis:48px}
+.hero-food-tile span{font-size:11px}.hero-food-extra{display:none}
+.trust{gap:9px;margin-top:12px;font-size:10px}
+.hero-badge{margin-top:10px;padding:6px 9px;font-size:10px}
+section{scroll-margin-top:120px}
+.container{padding:30px 12px}
+.section-head{margin-bottom:17px}.section-head h2{font-size:26px;margin-bottom:7px}.section-head p{font-size:12px}
+.promo{gap:10px;margin-bottom:18px}.promo-card{min-height:112px;padding:17px;border-radius:11px}
+.promo-card h3{font-size:19px}.promo-card p{font-size:11px;max-width:260px}
+.promo-card::after{font-size:85px;right:9px;bottom:-18px}
+.controls{grid-template-columns:1fr;gap:9px;margin-bottom:13px}.field{padding:12px;font-size:14px}
+.categories{gap:7px;margin-bottom:17px}.cat{padding:9px 11px;font-size:11px}
+.menu-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.food-card{border-radius:10px}.food-img{height:clamp(105px,24vw,155px);object-fit:cover}
+.food-info{padding:9px}.food-category{font-size:9px;letter-spacing:.6px}
+.food-info h3{font-size:13px;line-height:1.3;margin:6px 0}.food-info p{font-size:10px;line-height:1.45;margin-bottom:7px}
+.size-heading{font-size:10px;margin:6px 0}.size-options{gap:4px;margin-bottom:7px}
+.size-box{width:32px;min-width:32px;height:32px;border-radius:5px;font-size:10px}
+.selected-size-price{font-size:10px;min-height:15px;margin-bottom:7px}
+.food-bottom{align-items:center;gap:5px}.price{font-size:13px}.add-btn{padding:8px 9px;font-size:10px}
+.info-grid{grid-template-columns:1fr;gap:10px}.info-item{padding:17px}
+.checkout-grid,.footer-grid,.form-row{grid-template-columns:1fr}.panel{padding:16px}
+.panel h3{font-size:18px;margin-bottom:16px}
+.cart-float{right:10px;bottom:10px;padding:12px 14px}.modal{padding:18px}
+.footer-grid{padding:32px 16px 22px;gap:18px}
+}
+@media(min-width:540px) and (max-width:720px){
+.hero-food-preview{grid-template-columns:repeat(4,minmax(0,1fr));max-width:100%}
+.hero-food-extra{display:flex}
+.hero-food-tile{display:flex;flex-direction:column;align-items:stretch;padding:6px}
+.hero-food-tile img{width:100%;height:68px;flex-basis:auto}
+.hero-food-tile span{text-align:center;font-size:11px}
+.hero-content{padding:28px 18px}.menu-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.food-img{height:clamp(100px,17vw,145px)}
 }
 @media(max-width:380px){
-.topbar{font-size:10px}.menu-grid{grid-template-columns:1fr}
-.food-img{height:205px}.hero h1{font-size:39px}
-.hero-actions .btn{width:100%}.trust{gap:10px}
+.topbar{font-size:9px}.navlinks{gap:5px}.navlinks a{font-size:10px}
+.hero-content{padding:20px 12px 18px}.hero h1{font-size:30px}.hero p{font-size:11px}
+.hero-actions{flex-direction:row}.hero-actions .btn{width:auto;font-size:10px;padding:9px 7px}
+.hero-food-tile img{width:41px;height:39px;flex-basis:41px}.hero-food-tile span{font-size:10px}
+.menu-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.food-img{height:105px}.food-info{padding:8px}.food-info h3{font-size:12px}.food-info p{font-size:10px}
+.size-box{width:29px;min-width:29px;height:30px}.price{font-size:12px}.add-btn{padding:7px;font-size:10px}
 }
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition-duration:.01ms!important}}
 </style>
@@ -188,6 +232,12 @@ footer a:not(.footer-contact):hover{color:var(--gold)}
 <div class="hero-actions">
 <a class="btn btn-gold" href="#menu">Explore Our Menu →</a>
 <a class="btn" style="background:#ffffff17;color:white;border:1px solid #ffffff70" href="#delivery">Order for Delivery</a>
+</div>
+<div class="hero-food-preview" aria-label="Popular food previews">
+<a class="hero-food-tile" href="#menu"><img src="1.jpg" alt="Fresh pizza" fetchpriority="high"><span>Fresh Pizza</span></a>
+<a class="hero-food-tile" href="#menu"><img src="9.jpg" alt="Crispy zinger burger" fetchpriority="high"><span>Zinger Burger</span></a>
+<a class="hero-food-tile hero-food-extra" href="#menu"><img src="26.jpg" alt="Chicken biryani" loading="eager"><span>Chicken Biryani</span></a>
+<a class="hero-food-tile hero-food-extra" href="#menu"><img src="14.jpg" alt="Crispy chicken broast" loading="eager"><span>Chicken Broast</span></a>
 </div>
 <div class="trust"><span>🍕 Made fresh</span><span>🛵 Home delivery</span><span>💵 Pay on delivery</span></div>
 <div class="hero-badge">Good food. Great cravings. Delivered to your door.</div>
@@ -279,11 +329,11 @@ footer a:not(.footer-contact):hover{color:var(--gold)}
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
 <script>
-// ========================================================
-// EMAIL CONFIGURATION
-// Replace the three placeholders with your EmailJS details.
-// In your EmailJS template, set "To Email" to sawqwe@gmail.com.
-// ========================================================
+ 
+
+
+
+ 
 const EMAILJS_PUBLIC_KEY = "YOUR_EMAILJS_PUBLIC_KEY";
 const EMAILJS_SERVICE_ID = "YOUR_EMAILJS_SERVICE_ID";
 const EMAILJS_TEMPLATE_ID = "YOUR_EMAILJS_TEMPLATE_ID";
